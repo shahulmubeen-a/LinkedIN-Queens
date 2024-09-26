@@ -4,17 +4,30 @@ from random import choice
 from z3 import *
 
 
-def read_level_map(filemap):
-    with open(filemap, 'r') as f:
-        rows = f.readlines()
+class ReadFile:
 
-    grid = []
-    for line in rows:
-        row = line.strip().split()
-        for char in row:
-            grid.append(char)
+    def __init__(self, filemap):
+        self.chars = []
+        self.zones = {}
+        self.filemap = filemap
 
-    return grid
+        self.extract_chars()
+        self.extract_zones()
+
+    def extract_chars(self):
+        with open(self.filemap, 'r') as f:
+            rows = f.readlines()
+        for line in rows:
+            row = line.strip().split()
+            for char in row:
+                self.chars.append(char)
+
+    def extract_zones(self):
+        for i, char in enumerate(self.chars):
+            row, col = divmod(i, int(len(self.chars) ** 0.5))
+            if char not in self.zones:
+                self.zones[char] = []
+            self.zones[char].append((row, col))
 
 
 def generate_matrices(n):

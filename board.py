@@ -2,14 +2,15 @@ import pygame as pg
 from settings import *
 from random import randint
 from string import ascii_lowercase
-from solver import read_level_map, evaluate_solution
+from solver import ReadFile, evaluate_solution
 
 
 # Board Class to display different zones with their own colors and place queens based on the solution matrix
 class NQueensBoard:
     def __init__(self, window, filemap):
         self.window = window
-        self.colors = read_level_map(filemap)
+        self.colors = ReadFile(filemap).chars
+        self.zones = ReadFile(filemap).zones
         self.sides = int(len(self.colors) ** 0.5)
         self.cell_size = BOARD_SIZE // self.sides
 
@@ -35,8 +36,8 @@ class NQueensBoard:
         for (row, col), color_char in zip(self.cell_rects.keys(), self.colors):
             self.cell_colors[(row, col)] = self.color_map_from_file.get(color_char, DEFAULT_CELL_COLOR)
 
-        # print(f'Obtained Matrix:\n{self.board_matrix}')
-        # print(self.cell_rects)
+        print(f'Obtained Matrix:\n{self.board_matrix}')
+        print(self.zones)
 
     def draw_board(self):
         grid_width = self.sides * self.cell_size
