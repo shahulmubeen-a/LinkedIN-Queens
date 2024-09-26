@@ -12,7 +12,7 @@ class NQueensBoard:
         self.sides = len(self.zones)
         self.cell_size = BOARD_SIZE // self.sides
 
-        self.board_matrix = evaluate_solution(self.sides)
+        self.board_matrix = evaluate_solution(self.sides, self.zones)
 
         # create cells and obtain their positions
         self.cell_rects = {}
