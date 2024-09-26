@@ -1,17 +1,15 @@
 import pygame as pg
 from settings import *
 from random import randint
-from string import ascii_lowercase
-from solver import ReadFile, evaluate_solution
+from solver import read_file, evaluate_solution
 
 
 # Board Class to display different zones with their own colors and place queens based on the solution matrix
 class NQueensBoard:
     def __init__(self, window, filemap):
         self.window = window
-        self.cells = ReadFile(filemap).chars
-        self.zones = ReadFile(filemap).zones
-        self.sides = int(len(self.cells) ** 0.5)
+        self.zones = read_file(filemap)
+        self.sides = len(self.zones)
         self.cell_size = BOARD_SIZE // self.sides
 
         self.board_matrix = evaluate_solution(self.sides)
@@ -26,20 +24,16 @@ class NQueensBoard:
                 self.cell_rects[(row, col)] = cell_rect
 
         # obtain zones from file and assign colors
-        self.color_map_from_file = {}
+        self.cell_colors = {}
+        color_map_from_file = {}
         mapping = self.zones.keys()
         for char in mapping:
-            self.color_map_from_file[char] = (randint(0, 255), randint(0, 255), randint(0, 255))
-
-        # assign each cell a color based on the color map
-        self.cell_colors = {}
-        for (row, col), color_char in zip(self.cell_rects.keys(), self.cells):
-            self.cell_colors[(row, col)] = self.color_map_from_file.get(color_char, DEFAULT_CELL_COLOR)
+            color_map_from_file[char] = (randint(0, 255), randint(0, 255), randint(0, 255))
+        for char, zone in self.zones.items():
+            for index in zone:
+                self.cell_colors[index] = color_map_from_file.get(char, DEFAULT_CELL_COLOR)
 
         print(f'Obtained Matrix:\n{self.board_matrix}')
-        print(f'Obtained Zones:\n{self.zones}')
-        print(f'Obtained Cells:\n{self.cells}')
-        print(f'Assigned Colors:\n{self.color_map_from_file}')
 
     def draw_board(self):
         grid_width = self.sides * self.cell_size

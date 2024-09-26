@@ -5,6 +5,7 @@ import sys
 
 
 def main():
+
     pg.init()
 
     # Initialise stuff
