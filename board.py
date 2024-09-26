@@ -48,9 +48,9 @@ class NQueensBoard:
         mapping = self.zones.keys()
         for char in mapping:
             color_map_from_file[char] = (randint(0, 255), randint(0, 255), randint(0, 255))
-        for char, zone in self.zones.items():
+        for color, zone in self.zones.items():
             for index in zone:
-                self.cell_colors[index] = color_map_from_file.get(char, DEFAULT_CELL_COLOR)
+                self.cell_colors[index] = color_map_from_file.get(color, DEFAULT_CELL_COLOR)
 
     def draw_board(self):
         grid_width = self.sides * self.cell_size
