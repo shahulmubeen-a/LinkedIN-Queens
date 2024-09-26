@@ -38,6 +38,8 @@ def generate_matrices(n):
 
         matrices.append(new_matrix)
 
+    print(f'Found {len(matrices)} possible combinations')
+
     return matrices
 
 

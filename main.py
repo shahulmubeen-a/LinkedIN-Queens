@@ -6,9 +6,8 @@ import sys
 
 def main():
 
-    pg.init()
-
     # Initialise stuff
+    pg.init()
     window = pg.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     clock = pg.time.Clock()
     board = NQueensBoard(window, FILEMAP)
