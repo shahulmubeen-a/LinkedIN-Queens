@@ -1,7 +1,26 @@
 import pygame as pg
 from settings import *
 from random import randint
-from solver import read_file, evaluate_solution
+from z3_solver import evaluate_solution
+
+
+def read_file(filemap):
+    chars_ = []
+    zones = {}
+    with open(filemap, 'r') as f:
+        rows = f.readlines()
+    for line in rows:
+        row = line.strip().split()
+        for char in row:
+            chars_.append(char)
+
+    for i, char in enumerate(chars_):
+        row, col = divmod(i, int(len(chars_) ** 0.5))
+        if char not in zones:
+            zones[char] = []
+        zones[char].append((row, col))
+
+    return zones
 
 
 # Board Class to display different zones with their own colors and place queens based on the solution matrix
