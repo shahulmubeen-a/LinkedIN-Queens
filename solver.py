@@ -37,8 +37,9 @@ def generate_matrices(n):
 
 def evaluate_solution(n):
     possible_matrices = generate_matrices(n)
-    solver = Solver()
     valid_matrices = choice(possible_matrices)
+
+    # solver = Solver()
 
     # for r in range(n):
     #     for c in range(n):

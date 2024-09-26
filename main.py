@@ -23,9 +23,10 @@ def main():
 
         # Draw stuff
         window.fill('#FFFFFF')
-        board.draw_elements()
+        board.draw_board()
 
         # Update stuff
+        pg.display.update()
         clock.tick(FPS)
 
 
