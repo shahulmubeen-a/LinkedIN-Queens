@@ -49,4 +49,3 @@ def evaluate_solution(n):
     #         solver.add(Sum(If(valid_matrices[r][c], 1, 0)) == 1)
     #
     return valid_matrices
-
