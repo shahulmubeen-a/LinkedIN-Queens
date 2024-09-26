@@ -9,9 +9,9 @@ from solver import ReadFile, evaluate_solution
 class NQueensBoard:
     def __init__(self, window, filemap):
         self.window = window
-        self.colors = ReadFile(filemap).chars
+        self.cells = ReadFile(filemap).chars
         self.zones = ReadFile(filemap).zones
-        self.sides = int(len(self.colors) ** 0.5)
+        self.sides = int(len(self.cells) ** 0.5)
         self.cell_size = BOARD_SIZE // self.sides
 
         self.board_matrix = evaluate_solution(self.sides)
@@ -27,17 +27,19 @@ class NQueensBoard:
 
         # obtain zones from file and assign colors
         self.color_map_from_file = {}
-        mapping = list(ascii_lowercase)
+        mapping = self.zones.keys()
         for char in mapping:
             self.color_map_from_file[char] = (randint(0, 255), randint(0, 255), randint(0, 255))
 
         # assign each cell a color based on the color map
         self.cell_colors = {}
-        for (row, col), color_char in zip(self.cell_rects.keys(), self.colors):
+        for (row, col), color_char in zip(self.cell_rects.keys(), self.cells):
             self.cell_colors[(row, col)] = self.color_map_from_file.get(color_char, DEFAULT_CELL_COLOR)
 
         print(f'Obtained Matrix:\n{self.board_matrix}')
-        print(self.zones)
+        print(f'Obtained Zones:\n{self.zones}')
+        print(f'Obtained Cells:\n{self.cells}')
+        print(f'Assigned Colors:\n{self.color_map_from_file}')
 
     def draw_board(self):
         grid_width = self.sides * self.cell_size
