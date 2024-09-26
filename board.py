@@ -21,8 +21,9 @@ class NQueensBoard:
         self.create_cells()
         self.cell_colors = self.assign_colors_to_cells()
 
-        self.board_matrix = evaluate_solution()
-        print(self.board_matrix)
+        self.board_matrix = evaluate_solution(self.sides)
+        print(f'Obtained Matrix:\n{self.board_matrix}')
+        print(self.cell_rects)
 
     def create_cells(self):
         for row in range(self.sides):

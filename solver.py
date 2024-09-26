@@ -1,6 +1,7 @@
 import numpy as np
 from itertools import combinations
 from random import choice
+from z3 import *
 
 
 def read_level_map(filemap):
@@ -34,8 +35,17 @@ def generate_matrices(n):
     return matrices
 
 
-def evaluate_solution():
-    possible_matrices = generate_matrices(4)
+def evaluate_solution(n):
+    possible_matrices = generate_matrices(n)
+    solver = Solver()
     valid_matrices = choice(possible_matrices)
 
+    # for r in range(n):
+    #     for c in range(n):
+    #         solver.add(Sum(If(valid_matrices[r][c], 1, 0)) == 1)
+    #
+    # for c in range(n):
+    #     for r in range(n):
+    #         solver.add(Sum(If(valid_matrices[r][c], 1, 0)) == 1)
+    #
     return valid_matrices
