@@ -33,8 +33,6 @@ class NQueensBoard:
             for index in zone:
                 self.cell_colors[index] = color_map_from_file.get(char, DEFAULT_CELL_COLOR)
 
-        print(f'Obtained Matrix:\n{self.board_matrix}')
-
     def draw_board(self):
         grid_width = self.sides * self.cell_size
         grid_height = self.sides * self.cell_size
