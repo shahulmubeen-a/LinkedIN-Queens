@@ -31,7 +31,7 @@ class NQueensBoard:
         self.sides = len(self.zones)
         self.cell_size = BOARD_SIZE // self.sides
 
-        self.board_matrix = evaluate_solution(self.sides, self.zones)
+        self.solution_matrix = evaluate_solution(self.sides, self.zones)
 
         # create cells and obtain their positions
         self.cell_rects = {}
@@ -66,7 +66,7 @@ class NQueensBoard:
             pg.draw.rect(self.window, BORDER_COLOR, cell_rect, PADDING)
 
             # draw queens
-            if self.board_matrix[row, col] == 1:
+            if self.solution_matrix[row, col] == 1:
                 center_x = col * self.cell_size + self.cell_size // 2 + grid_left
                 center_y = row * self.cell_size + self.cell_size // 2 + grid_top
                 radius = self.cell_size // 5
