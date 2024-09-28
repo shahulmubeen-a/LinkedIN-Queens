@@ -9,5 +9,5 @@ WINDOW_HEIGHT = 600
 BOARD_SIZE = 450
 PADDING = 2
 
-FILEMAP = 'levels/grid5.txt'
+FILEMAP = 'levels/grid6.txt'
 FPS = 30
