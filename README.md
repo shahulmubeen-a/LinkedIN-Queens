@@ -1,9 +1,9 @@
 LinkedIn Queens Solver
 
-Description
+Description:
 This is a Python implementation of the solver for the daily Queens puzzle from LinkedIn.
 
-License
+License:
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 Installation
