@@ -5,15 +5,16 @@ import sys
 
 
 def main():
-    pg.init()
     window = pg.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     board = NQueensBoard(window, FILEMAP)
+
     if board.solution_matrix is None:
         print('No solutions found')
     else:
         print(f'Solution found:\n{board.solution_matrix}')
 
         # Initialise stuff
+        pg.init()
         pg.display.set_caption('LinkedIn Queens Solver')
 
         clock = pg.time.Clock()
